@@ -1,11 +1,12 @@
 import './App.css';
-import CustomerList from './components/CustomerList';
+// import CustomerList from './components/CustomerList';
 import DetailCustomer from './components/DetailCustomer';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
 import CreateCustomer from './components/CreateCustomer';
 import EditCustomer from './components/EditCustomer';
+import CustomerContainer from './components/CustomerContainer';
 // const customers = [
 //   {
 //     no:1,
@@ -40,7 +41,8 @@ function App() {
       <Header/>
       <Routes>
       {/* customers={customers} */}
-        <Route path="/" element={<CustomerList/>} />  
+        {/* <Route path="/" element={<CustomerList/>} />   */}
+        <Route path="/" element={<CustomerContainer/>} />  
         <Route path='/detailview/:no' element={<DetailCustomer/>} />
         <Route path='/write' element={<CreateCustomer/>} />
         <Route path='/editcustomer/:no' element={<EditCustomer/>} />

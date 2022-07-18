@@ -4,12 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { applyMiddleware, legacy_createStore as createStore } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './modules';
+import { Provider } from 'react-redux';
 
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+console.log(store.getState());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
