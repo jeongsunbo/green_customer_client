@@ -2,7 +2,8 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
 import axios from 'axios';
 import useAsync from '../customHook/useAsync';
-import {useParams} from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+
 
 
 async function getCustomers(no){
@@ -12,10 +13,27 @@ async function getCustomers(no){
 
 const DetailCustomer = () => {
     const { no } = useParams();
+    const navigate = useNavigate();
     console.log(no);
     const [ state ] = useAsync(()=>getCustomers(no),[no]);
-    const { loading, data:customer, error } = state;
-    console.log(customer);
+    const { loading, data:customer, error } = state;  // data:customer??
+    // console.log(customer);
+
+    // 삭제하기
+    const onDelete = () => {
+        axios.delete(`http://localhost:3001/delCustomer/${no}`)
+        .then(result=>{
+            console.log("삭제되었습니다.");
+            navigate("/");
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    // 업데이트하기
+    
+
     if(loading) return <div>로딩중입니다.......</div>;
     if(error) return<div>에러가 발생했습니다.</div>;
     if(!customer) return null;
@@ -44,6 +62,12 @@ const DetailCustomer = () => {
                     <TableRow>
                         <TableCell>주소</TableCell>
                         <TableCell>{customer.add1}{customer.add2}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell colSpan={2}>
+                            <button onClick={onDelete}>삭제</button>
+                            <button><Link to={`/editcustomer/${no}`}>수정</Link></button>
+                        </TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

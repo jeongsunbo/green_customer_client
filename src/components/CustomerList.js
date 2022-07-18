@@ -5,7 +5,7 @@ import axios from 'axios';
 import Customer from './Customer';
 
 async function getCustomers(){
-    const response = await axios.get(`http://localhost:3001/customers`) //다시 확인
+    const response = await axios.get(`http://localhost:3001/customers`) //서버에서 받아오는거
     return response.data;
   }
 
