@@ -4,9 +4,10 @@ import DetailCustomer from './components/DetailCustomer';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
-import CreateCustomer from './components/CreateCustomer';
+// import CreateCustomer from './components/CreateCustomer';
 import EditCustomer from './components/EditCustomer';
 import CustomerContainer from './components/CustomerContainer';
+import CreateCustomerContainer from './components/CreateCustomerContainer';
 // const customers = [
 //   {
 //     no:1,
@@ -44,7 +45,8 @@ function App() {
         {/* <Route path="/" element={<CustomerList/>} />   */}
         <Route path="/" element={<CustomerContainer/>} />  
         <Route path='/detailview/:no' element={<DetailCustomer/>} />
-        <Route path='/write' element={<CreateCustomer/>} />
+        {/* <Route path='/write' element={<CreateCustomer/>} /> */}
+        <Route path='/write' element={<CreateCustomerContainer/>} />
         <Route path='/editcustomer/:no' element={<EditCustomer/>} />
       </Routes>
       <Footer/>

@@ -35,6 +35,10 @@ export const setInput = (e) => {
     }
 }
 
+// 홈으로 이동 함수
+export const goToHome = (navigate) => () =>{
+    navigate('/');
+}
 // thunk함수를 사용하요 액션객체 디스패치하기
 export const getCustomers = () => async dispatch => {
     dispatch({ type: GET_CUSTOMERS }) //요청시작
@@ -51,7 +55,7 @@ export const getCustomers = () => async dispatch => {
 export const setSubmit = () => async (dispatch, getState) => {
     const formdata = getState().customers.addCustomer;
     try{
-        const response = await axios.post(`http://localhost:3001/addCustomers`, formdata)
+        const response = await axios.post(`http://localhost:3001/addCustomer`, formdata)
         dispatch({ type: SET_RESET})
     }
     catch(e) {
